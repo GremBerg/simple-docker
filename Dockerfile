@@ -19,4 +19,4 @@ LABEL io.k8s.description="A basic Apache HTTP Server child image, uses ONBUILD" 
 EXPOSE 8080
 USER 1001
 # Launch httpd
-CMD /usr/sbin/httpd -DFOREGROUND
+CMD python3 /tmp/src/app.py

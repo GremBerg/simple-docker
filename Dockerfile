@@ -23,5 +23,5 @@ EXPOSE 8080
 USER 1001
 # Launch httpd
 WORKDIR $DOCROOT
-ENTRYPOINT ['python3']
+ENTRYPOINT ['/usr/bin/python3']
 CMD ['app.py']

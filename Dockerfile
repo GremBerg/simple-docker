@@ -1,8 +1,7 @@
 FROM registry.access.redhat.com/ubi8/ubi:8.0
 MAINTAINER Red Hat Training <training@redhat.com>
 ENV DOCROOT=/tmp/src
-RUN yum update -y && \
-    yum install -y python3 python3-pip && \
+RUN yum install -y python3 python3-pip && \
     pip3 install --upgrade pip && \
     pip3 install --upgrade virtualenv && \
     yum clean all && \

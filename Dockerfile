@@ -1,0 +1,18 @@
+FROM registry.access.redhat.com/ubi8/ubi:8.0
+MAINTAINER Red Hat Training <training@redhat.com>
+ENV DOCROOT=/var/www/html
+RUN yum update -y && \
+    yum install -y python3 python3-pip && \
+    pip3 install --upgrade pip && \
+    yum clean all && \
+    pip3 install --use-feature=2020-resolver --upgrade flask PyMySQL psycopg2-binary
+# This stuff is needed to ensure a clean start
+LABEL io.openshift.expose-services="8080:http"
+LABEL io.k8s.description="A basic Apache HTTP Server child image, uses ONBUILD" \
+      io.k8s.display-name="Apache HTTP Server" \
+      io.openshift.expose-services="8080:http" \
+      io.openshift.tags="apache, httpd"
+EXPOSE 8080
+USER 1001
+# Launch httpd
+CMD /usr/sbin/httpd -DFOREGROUND

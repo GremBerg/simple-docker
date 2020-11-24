@@ -22,6 +22,6 @@ LABEL io.k8s.description="A basic Apache HTTP Server child image, uses ONBUILD" 
 EXPOSE 8080
 USER 1001
 # Launch httpd
-WORDIR $DOCROOT
+WORKDIR $DOCROOT
 ENTRYPOINT ['python3']
 CMD ['app.py']

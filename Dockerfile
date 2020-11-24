@@ -1,11 +1,15 @@
 FROM registry.access.redhat.com/ubi8/ubi:8.0
 MAINTAINER Red Hat Training <training@redhat.com>
-ENV DOCROOT=/var/www/html
+ENV DOCROOT=/tmp/src
 RUN yum update -y && \
     yum install -y python3 python3-pip && \
     pip3 install --upgrade pip && \
     yum clean all && \
-    pip3 install --use-feature=2020-resolver --upgrade flask PyMySQL psycopg2-binary
+    pip3 install --use-feature=2020-resolver --upgrade flask PyMySQL psycopg2-binary && \
+    mkdir $DOCROOT && \
+    chgrp -R 0 $DOCROOT && \
+    chmod -R g=u $DOCROOT
+COPY app.py $DOCROOT
 # This stuff is needed to ensure a clean start
 LABEL io.openshift.expose-services="8080:http"
 LABEL io.k8s.description="A basic Apache HTTP Server child image, uses ONBUILD" \

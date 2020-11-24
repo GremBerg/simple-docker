@@ -9,7 +9,7 @@ RUN yum install -y python3 python3-pip && \
     cd $DOCROOT && \
     virtualenv my_env_total -p python3 && \
     source /tmp/src/my_env_total/bin/activate && \
-    pip install --use-feature=2020-resolver --upgrade flask PyMySQL psycopg2-binary
+    pip install --use-feature=2020-resolver --upgrade flask PyMySQL psycopg2-binary && \
     chgrp -R 0 $DOCROOT && \
     chmod -R g=u $DOCROOT
 COPY app.py $DOCROOT

@@ -2,7 +2,7 @@ FROM centos:7
 MAINTAINER ijoseibh19@gmail.com
 ENV DOCROOT=/var/www/html
 RUN yum install -y --disableplugin=subscription-manager httpd && \
-    yum clean all --disableplugin=subscription-manager -y && \
+    yum clean all --disableplugin=subscription-manager -y
 
 # COPY src/ ${DOCROOT}/
 
